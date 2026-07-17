@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Retry {
 
-    ;
-
     public static boolean askForRetry() {
 
         Scanner scanner = new Scanner(System.in);
@@ -14,7 +12,7 @@ public class Retry {
 
         while (breakLoop!=3) {
 
-            System.out.println("Do you wanna retry?");
+            System.out.println("Do you wanna retry? [Y]es/[N]o");
             String answer = scanner.nextLine();
             breakLoop++;
 
@@ -36,5 +34,39 @@ public class Retry {
         }
 
         return false;
+    }
+
+    public static String askForToolRetry() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int breakLoopTool = 0;
+
+        while (breakLoopTool!=3) {
+
+            System.out.println("Pls choose your tool: [G]enerate / [V]alidate:");
+            String tool = scanner.nextLine();
+            breakLoopTool++;
+
+            if (tool.equalsIgnoreCase("v")) {
+
+                return "v";
+
+            } else if (tool.equalsIgnoreCase("g")) {
+
+                return "g";
+
+            } else {
+
+                if (breakLoopTool !=3) {
+                    System.out.println("Pls enter correct answer!");
+                }
+
+
+            }
+
+        }
+
+        return "End";
     }
 }

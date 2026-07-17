@@ -8,7 +8,7 @@ public class ValidateMethods<nic> {
 
 
 
-    public static ArrayList<Integer> makeArrayList(String nicString) {
+    public ArrayList<Integer> makeArrayList(String nicString) {
 
         ArrayList<Integer> nic = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class ValidateMethods<nic> {
     }
 
 
-    public static boolean sizeValidate(String nic) {
+    public boolean sizeValidate(String nic) {
 
         if (8 <= nic.length() && nic.length() <= 10) {
 
@@ -37,20 +37,20 @@ public class ValidateMethods<nic> {
         return false;
     }
 
-    ArrayList<Integer> nic = new ArrayList<>();
-
     public static boolean validateNic(ArrayList<Integer> nic) {
+
+        ArrayList<Integer> nic2 = new ArrayList<>();
 
         int sum = 0;
 
-        for (int i = 0; i < nic.size(); i++) {
+        for (int i = 0; i < 10; i++) {
 
-            nic.set(i,nic.get(i)*(i+1));
+            nic2.add(nic.get(i)*(i+1));
         }
 
-        for (int i = 1; i < nic.size(); i++) {
+        for (int i = 1; i < 10; i++) {
 
-            sum += nic.get(i);
+            sum += nic2.get(i);
         }
 
         int mod = sum % 11;
@@ -59,11 +59,11 @@ public class ValidateMethods<nic> {
 
         if (mod >= 2 ) {
 
-            validate = (11 - mod == nic.get(0));
+            validate = (11 - mod == nic2.get(0));
 
         } else {
 
-            validate = (mod == nic.get(0));
+            validate = (mod == nic2.get(0));
         }
 
         return validate;

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static validator.ValidateMethods.makeArrayList;
 import static validator.ValidateMethods.validateNic;
 
 class ValidateMethodsTest {
@@ -26,7 +25,6 @@ class ValidateMethodsTest {
         System.out.println(nic);
 
 
-
     }
 
     @Test
@@ -44,14 +42,30 @@ class ValidateMethodsTest {
         System.out.println(nic);
 
 
-
     }
 
     @Test
     void validate() {
 
+        ValidateMethods<Object> objectValidateMethods = new ValidateMethods<>();
+
         String nic = "0056234565";
 
-        System.out.println(validateNic(makeArrayList(nic)));
+        System.out.println(validateNic(objectValidateMethods.makeArrayList(nic)));
+    }
+
+    @Test
+    void generate() {
+
+        GenerateMethods generateMethods = new GenerateMethods();
+        ValidateMethods<Object> objectValidateMethods = new ValidateMethods<>();
+
+        String generatedNic = generateMethods.generateNic();
+
+        System.out.println(generatedNic);
+
+        ArrayList<Integer> generatedNicArrayList = objectValidateMethods.makeArrayList(generatedNic);
+
+        Assertions.assertTrue(ValidateMethods.validateNic(generatedNicArrayList));
     }
 }
