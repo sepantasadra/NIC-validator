@@ -1,12 +1,13 @@
 package validator;
 
+import Methods.GenerateMethods;
+import Methods.ValidateMethods;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static validator.ValidateMethods.validateNic;
+import static Methods.ValidateMethods.validateNic;
 
 class ValidateMethodsTest {
 

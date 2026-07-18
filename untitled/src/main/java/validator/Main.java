@@ -3,9 +3,11 @@ package validator;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import validator.ValidateMethods.*;
+import Methods.GenerateMethods;
+import Methods.Retry;
+import Methods.ValidateMethods;
 
-import static validator.ValidateMethods.*;
+import static Methods.ValidateMethods.*;
 
 public class Main {
     public static void main(String[] args) {

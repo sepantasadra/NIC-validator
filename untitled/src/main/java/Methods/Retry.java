@@ -1,4 +1,4 @@
-package validator;
+package Methods;
 
 import java.util.Scanner;
 
