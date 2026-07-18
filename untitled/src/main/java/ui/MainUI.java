@@ -1,51 +1,51 @@
 package ui;
 
+import ui.component.CustomButton;
+import ui.component.CustomFrame;
+import ui.component.CustomLabel;
+import ui.component.CustomMenu;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class MainUI {
 
     public static void main(String... args) {
 
-            MethodsUI methodsUI = new MethodsUI();
+        new JTextField();
 
-            JFrame panel = new JFrame("NIC tools");
+        MethodsUI methodsUI = new MethodsUI();
 
-            ImageIcon favicon = new ImageIcon("src/main/java/img/Icon.png");
-            Image image = favicon.getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH);
+        CustomFrame panel = new CustomFrame("NIC tools");
 
-            JLabel label = new JLabel("Please select your tool:");
-            label.setBounds(5, 0, 150, 50);
+        CustomLabel label = new CustomLabel("Please select your tool:", 5, 0, 150, 50);
 
+        CustomButton validator = new CustomButton("Validator", 20);
+        validator.addActionListener(e -> {
+            panel.dispose();
+            methodsUI.makeValidator();
+        });
 
-            JButton validator = new JButton("Validator");
-            validator.setBounds(170, 20, 93, 25);
-            validator.addActionListener(e -> {
+        CustomButton generator = new CustomButton("Generator", 70);
+        generator.addActionListener(e -> {
 
-                    panel.dispose();
-                    methodsUI.makeValidator();
-
-
-            });
-
-            JButton generator = new JButton("Generator");
-            generator.setBounds(170, 70, 93, 25);
-            generator.addActionListener(e -> {
-
-                    panel.dispose();
-                    methodsUI.makeGenerator();
+            panel.dispose();
+            methodsUI.makeGenerator();
 
 
-            });
-            JLabel img = new JLabel(favicon);
-            img.setIcon(new ImageIcon(image));
-            img.setBounds(5, 40, 150, 70);
+        });
 
+        CustomMenu img = new CustomMenu(new ImageIcon(
+                Objects.requireNonNull(CustomLabel.class.getResource("/img/Icon.png"))
+        ));
 
-        MethodsUI.panelMaker(panel, label, favicon);
-            panel.add(validator);
-            panel.add(generator);
-            panel.add(img);
-        }
-
+        panel.add(label);
+        panel.add(validator);
+        panel.add(generator);
+        panel.add(img);
+        panel.revalidate();
+        panel.repaint();
     }
+
+}

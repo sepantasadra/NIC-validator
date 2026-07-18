@@ -2,6 +2,11 @@ package ui;
 
 import Methods.GenerateMethods;
 import Methods.ValidateMethods;
+import ui.component.CustomButton;
+import ui.component.CustomFrame;
+import ui.component.CustomLabel;
+import ui.component.CustomTextField;
+
 import java.awt.Color;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
@@ -20,23 +25,16 @@ public class MethodsUI {
 
         ValidateMethods validateMethods = new ValidateMethods();
 
-        JFrame panel = new JFrame("NIC Validator");
+        CustomFrame panel = new CustomFrame("NIC Validator");
 
-        JLabel label = new JLabel("Please enter your NIC:");
-        label.setBounds(5, 0, 150, 50);
+        CustomLabel label = new CustomLabel("Please enter your NIC:");
 
-        JTextField nic = new JTextField();
-        nic.setEditable(true);
-        nic.setBounds(10, 60, 150, 30);
+        CustomTextField nic = new CustomTextField(true);
 
-        JLabel validation = new JLabel();
-        validation.setBounds(190, 20, 70, 30);
-
-        JButton done = new JButton("Done");
-        done.setBounds(180, 60, 90, 30);
+        CustomButton done = new CustomButton("Done", 180, 60, 90, 30);
         validationButton(done, validateMethods, nic);
 
-        homeMethod(panel, label, nic, validation, done);
+        homeMethod(panel, label, nic, done);
 
 
     }
@@ -46,14 +44,11 @@ public class MethodsUI {
 
         GenerateMethods generateMethods = new GenerateMethods();
 
-        JFrame panel = new JFrame("NIC Generator");
+        CustomFrame panel = new CustomFrame("NIC Generator");
 
-        JLabel label = new JLabel("Generate NIC:");
-        label.setBounds(5, 0, 150, 50);
+        CustomLabel label = new CustomLabel("Generate NIC:");
 
-        JTextField nic = new JTextField();
-        nic.setEditable(false);
-        nic.setBounds(10, 60, 150, 30);
+        CustomTextField nic = new CustomTextField(false);
         nic.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent e) {
@@ -66,7 +61,7 @@ public class MethodsUI {
 
             public void mouseClicked(MouseEvent e) {
 
-                if (!nic.getText().isEmpty()) {
+                if (!nic.getText().isEmpty() && !nic.getText().equals("Text Copied!")) {
                     StringSelection selection = new StringSelection(nic.getText());
                     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
 
@@ -75,49 +70,28 @@ public class MethodsUI {
             }
         });
 
-        JButton done = new JButton("Generate");
-        done.setBounds(180, 60, 90, 30);
+        CustomButton done = new CustomButton("Generate", 180, 60, 90, 30);
         done.addActionListener(e -> nic.setText(generateMethods.generateNic()));
 
-        JLabel validation = new JLabel();
-        validation.setBounds(190, 20, 70, 30);
-
-        homeMethod(panel, label, nic, validation, done);
+        homeMethod(panel, label, nic, done);
 
 
     }
 
-    private void homeMethod(JFrame panel, JLabel label, JTextField nic, JLabel validation, JButton done) {
-        JButton menu = new JButton("🏠");
-        menu.setBounds(220, 5, 50, 20);
+    private void homeMethod(JFrame panel, JLabel label, JTextField nic, JButton done) {
+
+        CustomButton menu = new CustomButton("🏠", 220, 5, 50, 20);
         menu.addActionListener(e -> {
             panel.dispose();
             MainUI.main();
         });
 
-        ImageIcon favicon = new ImageIcon("src/main/java/img/Icon.png");
-
-
-        panelMaker(panel, label, favicon);
+        panel.add(label);
         panel.add(nic);
-        getAdd(panel, done);
-        panel.add(validation);
+        panel.add(done);
         panel.add(menu);
     }
 
-    static void panelMaker(JFrame panel, JLabel label, ImageIcon favicon) {
-        panel.setBounds(630, 300, 300, 150);
-        panel.setLayout(null);
-        panel.setVisible(true);
-        panel.setResizable(false);
-        panel.setIconImage(favicon.getImage());
-
-        panel.add(label);
-    }
-
-    private static void getAdd(JFrame panel, JButton done) {
-        panel.add(done);
-    }
 
     private static void validationButton(JButton done, ValidateMethods validateMethods, JTextField nic) {
         done.addActionListener(e -> {
@@ -156,5 +130,7 @@ public class MethodsUI {
                 done.setText("Done");
             }
         });
+
+
     }
 }
