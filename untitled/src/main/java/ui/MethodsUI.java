@@ -18,9 +18,9 @@ public class MethodsUI {
 
     public void makeValidator() {
 
-        ValidateMethods<Object> validateMethods = new ValidateMethods<>();
+        ValidateMethods validateMethods = new ValidateMethods();
 
-        JFrame pannel = new JFrame("NIC Validator");
+        JFrame panel = new JFrame("NIC Validator");
 
         JLabel label = new JLabel("Please enter your NIC:");
         label.setBounds(5, 0, 150, 50);
@@ -36,17 +36,17 @@ public class MethodsUI {
         done.setBounds(180, 60, 90, 30);
         validationButton(done, validateMethods, nic);
 
-        homeMethod(pannel, label, nic, validation, done);
+        homeMethod(panel, label, nic, validation, done);
 
 
     }
 
 
-    public void makeGenarator() {
+    public void makeGenerator() {
 
         GenerateMethods generateMethods = new GenerateMethods();
 
-        JFrame pannel = new JFrame("NIC Generator");
+        JFrame panel = new JFrame("NIC Generator");
 
         JLabel label = new JLabel("Generate NIC:");
         label.setBounds(5, 0, 150, 50);
@@ -77,48 +77,55 @@ public class MethodsUI {
 
         JButton done = new JButton("Generate");
         done.setBounds(180, 60, 90, 30);
-        done.addActionListener(e -> {
-            nic.setText(generateMethods.generateNic());
-        });
+        done.addActionListener(e -> nic.setText(generateMethods.generateNic()));
 
         JLabel validation = new JLabel();
         validation.setBounds(190, 20, 70, 30);
 
-        homeMethod(pannel, label, nic, validation, done);
+        homeMethod(panel, label, nic, validation, done);
 
 
     }
 
-    private void homeMethod(JFrame pannel, JLabel label, JTextField nic, JLabel validation, JButton done) {
+    private void homeMethod(JFrame panel, JLabel label, JTextField nic, JLabel validation, JButton done) {
         JButton menu = new JButton("🏠");
         menu.setBounds(220, 5, 50, 20);
         menu.addActionListener(e -> {
-            pannel.dispose();
+            panel.dispose();
             MainUI.main();
         });
 
-        ImageIcon imgicon = new ImageIcon("src/main/java/img/Icon.png");
+        ImageIcon favicon = new ImageIcon("src/main/java/img/Icon.png");
 
 
-        pannel.setBounds(630, 300, 300, 150);
-        pannel.setLayout(null);
-        pannel.setVisible(true);
-        pannel.setResizable(false);
-        pannel.setIconImage(imgicon.getImage());
-
-        pannel.add(label);
-        pannel.add(nic);
-        pannel.add(done);
-        pannel.add(validation);
-        pannel.add(menu);
+        panelMaker(panel, label, favicon);
+        panel.add(nic);
+        getAdd(panel, done);
+        panel.add(validation);
+        panel.add(menu);
     }
 
-    private static void validationButton(JButton done, ValidateMethods<Object> validateMethods, JTextField nic) {
+    static void panelMaker(JFrame panel, JLabel label, ImageIcon favicon) {
+        panel.setBounds(630, 300, 300, 150);
+        panel.setLayout(null);
+        panel.setVisible(true);
+        panel.setResizable(false);
+        panel.setIconImage(favicon.getImage());
+
+        panel.add(label);
+    }
+
+    private static void getAdd(JFrame panel, JButton done) {
+        panel.add(done);
+    }
+
+    private static void validationButton(JButton done, ValidateMethods validateMethods, JTextField nic) {
         done.addActionListener(e -> {
+            String userInput = nic.getText();
 
             if (done.getText().equals("Done")) {
 
-                if (!validateMethods.sizeValidate(nic.getText())) {
+                if (validateMethods.sizeValidate(userInput)) {
 
                     nic.setEditable(false);
                     nic.setText("Incorrect input!");
@@ -126,21 +133,19 @@ public class MethodsUI {
 
                 } else {
 
-                    boolean validate = validateNic(validateMethods.makeArrayList(nic.getText()));
+                    boolean validate = validateNic(validateMethods.makeArrayList(userInput));
 
+                    nic.setEditable(false);
                     if (validate) {
-                        nic.setEditable(false);
                         nic.setText("Valid NIC!");
                         done.setBackground(Color.green);
-                        done.setText("Retry");
 
                     } else {
 
-                        nic.setEditable(false);
                         nic.setText("NOT Valid NIC!");
                         done.setBackground(Color.red);
-                        done.setText("Retry");
                     }
+                    done.setText("Retry");
                 }
 
             } else {

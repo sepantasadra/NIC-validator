@@ -15,7 +15,7 @@ public class Main {
         boolean retry = true;
         String toolRetry;
         Scanner scanner = new Scanner(System.in);
-        ValidateMethods<Object> objectValidateMethods = new ValidateMethods<>();
+        ValidateMethods objectValidateMethods = new ValidateMethods();
         GenerateMethods generateMethods = new GenerateMethods();
 
         while (retry) {
@@ -28,7 +28,7 @@ public class Main {
                 String nicString = scanner.nextLine();
 
 
-                if (!objectValidateMethods.sizeValidate(nicString)) {
+                if (objectValidateMethods.sizeValidate(nicString)) {
                     System.out.println("Incorrect length for NIC!");
                 } else {
 

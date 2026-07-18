@@ -4,11 +4,32 @@ import java.util.ArrayList;
 
 
 
-public class ValidateMethods<nic> {
+public class ValidateMethods {
 
 
+    public String removing_spaces(String nicString) {
+
+        ArrayList<String> spaceRemovedNic = new ArrayList<>();
+        StringBuilder userInput = new StringBuilder();
+
+        for (int i = 0 ; i < nicString.length(); i++) {
+
+            String x = String.valueOf(nicString.charAt(i));
+            spaceRemovedNic.add(x);
+            spaceRemovedNic.remove(" ");
+        }
+
+        for (String s : spaceRemovedNic) {
+
+            userInput.append(s);
+        }
+        return userInput.toString();
+    }
 
     public ArrayList<Integer> makeArrayList(String nicString) {
+
+
+        nicString = removing_spaces(nicString);
 
         ArrayList<Integer> nic = new ArrayList<>();
 
@@ -29,12 +50,10 @@ public class ValidateMethods<nic> {
 
     public boolean sizeValidate(String nic) {
 
-        if (8 <= nic.length() && nic.length() <= 10) {
 
-            return true;
+        int length = removing_spaces(nic).length();
 
-        }
-        return false;
+        return 8 > length || length > 10;
     }
 
     public static boolean validateNic(ArrayList<Integer> nic) {

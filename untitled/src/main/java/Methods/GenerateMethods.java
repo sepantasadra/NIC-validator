@@ -10,7 +10,7 @@ public class GenerateMethods {
     public String generateNic() {
 
         ArrayList<Integer> nic = new ArrayList<>();
-        String nicString = "";
+        StringBuilder nicString = new StringBuilder();
         boolean valid = false;
 
         while (!valid) {
@@ -28,11 +28,11 @@ public class GenerateMethods {
 
         for (int i = 0; i < 10; i++) {
 
-            nicString += nic.get(i);
+            nicString.append(nic.get(i));
         }
 
 
-        return nicString;
+        return nicString.toString();
     }
 
 }

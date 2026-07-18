@@ -14,7 +14,7 @@ class ValidateMethodsTest {
     @Test
     void should_Change_String_To_ArrayList() {
 
-        String nicString = "7731689951";
+        String nicString = "7731689951  ";
 
         ArrayList<Integer> nic;
 
@@ -48,7 +48,7 @@ class ValidateMethodsTest {
     @Test
     void validate() {
 
-        ValidateMethods<Object> objectValidateMethods = new ValidateMethods<>();
+        ValidateMethods objectValidateMethods = new ValidateMethods();
 
         String nic = "0056234565";
 
@@ -59,7 +59,7 @@ class ValidateMethodsTest {
     void generate() {
 
         GenerateMethods generateMethods = new GenerateMethods();
-        ValidateMethods<Object> objectValidateMethods = new ValidateMethods<>();
+        ValidateMethods objectValidateMethods = new ValidateMethods();
 
         String generatedNic = generateMethods.generateNic();
 
@@ -68,5 +68,13 @@ class ValidateMethodsTest {
         ArrayList<Integer> generatedNicArrayList = objectValidateMethods.makeArrayList(generatedNic);
 
         Assertions.assertTrue(ValidateMethods.validateNic(generatedNicArrayList));
+    }
+
+    @Test
+    void should_remove_spaces() {
+
+        ValidateMethods validateMethods = new ValidateMethods();
+
+        System.out.println(validateMethods.removing_spaces("  0 4 044 35435 56  "));
     }
 }
