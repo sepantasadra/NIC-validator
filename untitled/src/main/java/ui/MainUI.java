@@ -37,7 +37,7 @@ public class MainUI {
         });
 
         CustomMenu img = new CustomMenu(new ImageIcon(
-                Objects.requireNonNull(CustomLabel.class.getResource("/img/Icon.png"))
+                Objects.requireNonNull(CustomLabel.class.getResource("/img/Icon2.png"))
         ));
 
         panel.add(label);

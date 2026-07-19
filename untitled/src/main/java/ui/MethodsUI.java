@@ -1,7 +1,6 @@
 package ui;
 
-import Methods.GenerateMethods;
-import Methods.ValidateMethods;
+import Methods.NIC;
 import ui.component.CustomButton;
 import ui.component.CustomFrame;
 import ui.component.CustomLabel;
@@ -16,14 +15,15 @@ import javax.swing.*;
 
 import java.awt.*;
 
-import static Methods.ValidateMethods.validateNic;
+import static Methods.NIC.validateNic;
 
 public class MethodsUI {
 
+    NIC nicObject = new NIC();
 
     public void makeValidator() {
 
-        ValidateMethods validateMethods = new ValidateMethods();
+
 
         CustomFrame panel = new CustomFrame("NIC Validator");
 
@@ -32,7 +32,7 @@ public class MethodsUI {
         CustomTextField nic = new CustomTextField(true);
 
         CustomButton done = new CustomButton("Done", 180, 60, 90, 30);
-        validationButton(done, validateMethods, nic);
+        validationButton(done, nicObject, nic);
 
         homeMethod(panel, label, nic, done);
 
@@ -41,8 +41,6 @@ public class MethodsUI {
 
 
     public void makeGenerator() {
-
-        GenerateMethods generateMethods = new GenerateMethods();
 
         CustomFrame panel = new CustomFrame("NIC Generator");
 
@@ -71,7 +69,7 @@ public class MethodsUI {
         });
 
         CustomButton done = new CustomButton("Generate", 180, 60, 90, 30);
-        done.addActionListener(e -> nic.setText(generateMethods.generateNic()));
+        done.addActionListener(e -> nic.setText(nicObject.generateNic()));
 
         homeMethod(panel, label, nic, done);
 
@@ -93,7 +91,7 @@ public class MethodsUI {
     }
 
 
-    private static void validationButton(JButton done, ValidateMethods validateMethods, JTextField nic) {
+    private static void validationButton(JButton done, NIC validateMethods, JTextField nic) {
         done.addActionListener(e -> {
             String userInput = nic.getText();
 

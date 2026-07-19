@@ -3,11 +3,10 @@ package validator;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Methods.GenerateMethods;
-import Methods.Retry;
-import Methods.ValidateMethods;
+import Methods.NIC;
+import Methods.AskUser;
 
-import static Methods.ValidateMethods.*;
+import static Methods.NIC.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,12 +14,11 @@ public class Main {
         boolean retry = true;
         String toolRetry;
         Scanner scanner = new Scanner(System.in);
-        ValidateMethods objectValidateMethods = new ValidateMethods();
-        GenerateMethods generateMethods = new GenerateMethods();
+        NIC nicObject = new NIC();
 
         while (retry) {
 
-            toolRetry = Retry.askForToolRetry();
+            toolRetry = AskUser.askForToolRetry();
 
             if (toolRetry.equals("v")) {
 
@@ -28,11 +26,11 @@ public class Main {
                 String nicString = scanner.nextLine();
 
 
-                if (objectValidateMethods.sizeValidate(nicString)) {
+                if (nicObject.sizeValidate(nicString)) {
                     System.out.println("Incorrect length for NIC!");
                 } else {
 
-                    ArrayList<Integer> nic = objectValidateMethods.makeArrayList(nicString);
+                    ArrayList<Integer> nic = nicObject.makeArrayList(nicString);
                     boolean result = validateNic(nic);
 
                     if (result) {
@@ -44,13 +42,13 @@ public class Main {
                     }
                 }
 
-                retry = Retry.askForRetry();
+                retry = AskUser.askForRetry();
 
             } else if (toolRetry.equals("g")){
 
-                System.out.println(generateMethods.generateNic());
+                System.out.println(nicObject.generateNic());
 
-                retry = Retry.askForRetry();
+                retry = AskUser.askForRetry();
 
             } else {
                 retry = false;

@@ -1,11 +1,75 @@
 package Methods;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AskUser {
+
+    public static boolean askForRetry() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int breakLoop = 0;
+
+        while (breakLoop!=3) {
+
+            System.out.println("Do you wanna retry? [Y]es/[N]o");
+            String answer = scanner.nextLine();
+            breakLoop++;
+
+            if (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
+
+                return true;
+
+            } else if (answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n")) {
+
+                return false;
+
+            } else {
+
+                System.out.println("Pls enter correct answer!");
 
 
+            }
 
-public class ValidateMethods {
+        }
 
+        return false;
+    }
+
+    public static String askForToolRetry() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int breakLoopTool = 0;
+
+        while (breakLoopTool!=3) {
+
+            System.out.println("Pls choose your tool: [G]enerate / [V]alidate:");
+            String tool = scanner.nextLine();
+            breakLoopTool++;
+
+            if (tool.equalsIgnoreCase("v")) {
+
+                return "v";
+
+            } else if (tool.equalsIgnoreCase("g")) {
+
+                return "g";
+
+            } else {
+
+                if (breakLoopTool !=3) {
+                    System.out.println("Pls enter correct answer!");
+                }
+
+
+            }
+
+        }
+
+        return "End";
+    }
 
     public String removing_spaces(String nicString) {
 
@@ -40,9 +104,9 @@ public class ValidateMethods {
             nic.add(x);
         }
 
-            while (nic.size() < 10) {
-                nic.add(0);
-            }
+        while (nic.size() < 10) {
+            nic.add(0);
+        }
 
         return nic;
     }
@@ -64,7 +128,7 @@ public class ValidateMethods {
 
         for (int i = 0; i < 10; i++) {
 
-            nic2.add(nic.get(i)*(i+1));
+            nic2.add(nic.get(i) * (i + 1));
         }
 
         for (int i = 1; i < 10; i++) {
@@ -76,7 +140,7 @@ public class ValidateMethods {
 
         boolean validate;
 
-        if (mod >= 2 ) {
+        if (mod >= 2) {
 
             validate = (11 - mod == nic2.get(0));
 
@@ -87,8 +151,4 @@ public class ValidateMethods {
 
         return validate;
     }
-
-
-
-
 }

@@ -18,7 +18,7 @@ public class BaseLabel extends JLabel {
     }
 
     public BaseLabel(int height,int y) {
-        this.x = 5;
+        this.x = 0;
         this.y = y;
         this.width = 150;
         this.height = height;

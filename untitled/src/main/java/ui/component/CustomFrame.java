@@ -17,7 +17,7 @@ public class CustomFrame extends JFrame {
     ImageIcon favicon = new ImageIcon(
             Objects.requireNonNull(MainUI.class.getResource("/img/Icon.png"))
     );
-    Image image = favicon.getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH);
+    Image image = favicon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 
     public CustomFrame(String text) {
         this.text = text;
